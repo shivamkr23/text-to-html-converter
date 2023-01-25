@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Text to HTML Editor</title>
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet"
+          href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css"
+          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+          crossorigin="anonymous">
+
+    <style>
+        #cke_id_body {
+            width: inherit !important;
+        }
+
+        .htmleditor p {
+            font-weight: 900;
+            font-size: 20px;
+        }
+
+        .texteditor p label {
+            font-weight: 800;
+            font-size: 18px;
+        }
+
+        #htmldata {
+            font-weight: 600;
+        }
+    </style>
+
+</head>
+<body>
+
+<!-- -----------------navbar start------------------- -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <a href="#" class="navbar-brand">Text to HTML Converter</a>
+</nav>
+<!-- -----------------navbar ends------------------- -->
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-lg-6 col-md-6 col-sm-6 col-6">
+            <div class="texteditor">
+                {{ form.media }} <!-- This module allows template writers to
+                    manipulate form media in templates. This allows multiple forms on a
+                     page to share scripts with out including them twice. -->
+                {{ form.as_p }}
+            </div>
+            <input type="submit" class="btn btn-info" onclick="TextConvert()">
+        </div>
+        <div class="col-sm-6 col-md-6 col-lg-6 col-6">
+            <div class="htmleditor">
+                <p>HTML Editor</p>
+                <div class="form-group">
+                        <textarea name="htmldata" id="htmldata"
+                                  rows="16" class="form-control">
+                        </textarea>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Bootstrap JavaScript -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/js/bootstrap.min.js"
+        integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+        crossorigin="anonymous"></script>
+
+<script>
+    TextConvert = () => {
+        let x = CKEDITOR.instances['id_body'].getData();
+        let y = document.getElementById('htmldata');
+        y.innerHTML = x;
+    }
+</script>
+</body>
+</html>
